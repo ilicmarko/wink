@@ -27,14 +27,20 @@ class WinkServiceProvider extends ServiceProvider
         );
 
         $this->app->singleton(FFMpeg::class, function ($app) {
-            $configuration = [];
+            $configuration = [
+                'ffmpeg.binaries'  => '/usr/bin/ffmpeg',
+                'ffprobe.binaries' => '/usr/bin/ffprobe',
+            ];
             $logger = $app->make(LoggerInterface::class);
 
             return FFMpeg::create($configuration, $logger);
         });
 
         $this->app->singleton(FFProbe::class, function ($app) {
-            $configuration = [];
+            $configuration = [
+                'ffmpeg.binaries'  => '/usr/bin/ffmpeg',
+                'ffprobe.binaries' => '/usr/bin/ffprobe',
+            ];
             $logger = $app->make(LoggerInterface::class);
 
             return FFProbe::create($configuration, $logger);
