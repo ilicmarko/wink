@@ -27,9 +27,9 @@
             /**
              * Finish the upload process.
              */
-            uploadFinished({video}) {
+            uploadFinished({ video, thumbnail, mime}) {
                 this.videoUrl = video;
-                this.$emit('changed', { url: video });
+                this.$emit('changed', { url: video, thumbnail, mime });
             },
 
             uploadVideoFile() {
@@ -49,10 +49,12 @@
                     }
                 }).then(response => {
                     this.video = response.data.url;
+                    this.thumbnail = response.data.thumbnail;
+                    this.mime = response.data.mime;
 
                     this.uploading = false;
 
-                    this.uploadFinished({ video: this.video });
+                    this.uploadFinished({ video: this.video, thumbnail: this.thumbnail, mime: this.mime });
                 }).catch(error => {
                     console.log(error);
                 });

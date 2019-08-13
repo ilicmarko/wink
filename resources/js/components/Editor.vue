@@ -194,9 +194,11 @@
                 this.editor.setSelection(range.index + 1, Quill.sources.SILENT);
             },
 
-            applyVideo({url, existingBlot}){
+            applyVideo({url, thumbnail, mime, existingBlot}){
                 let values = {
                     url: url,
+                    thumbnail,
+                    mime,
                 };
 
                 if (existingBlot) {

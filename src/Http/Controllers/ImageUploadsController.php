@@ -2,6 +2,8 @@
 
 namespace Wink\Http\Controllers;
 
+use FFMpeg\Coordinate\TimeCode;
+use FFMpeg\FFMpeg;
 use Illuminate\Support\Facades\Storage;
 
 class ImageUploadsController

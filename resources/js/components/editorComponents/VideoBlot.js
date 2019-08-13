@@ -10,8 +10,10 @@ class VideoBlot extends BlockEmbed {
 
         let video = document.createElement('video');
         let source = document.createElement('source');
-        video.setAttribute('controls', 'controls');
+        video.setAttribute('controls', '');
+        video.setAttribute('poster', value.thumbnail);
         source.setAttribute('src', value.url);
+        source.setAttribute('type', value.mime);
         video.appendChild(source);
         node.appendChild(video);
 
@@ -19,11 +21,13 @@ class VideoBlot extends BlockEmbed {
     }
 
     static value(node) {
-        console.log(node);
+        let source = node.querySelector('source');
         let video = node.querySelector('source');
 
         return {
-            url: video.getAttribute('src'),
+            url: source.getAttribute('src'),
+            mime: source.getAttribute('type'),
+            thumbnail: video.getAttribute('poster'),
         };
     }
 }
