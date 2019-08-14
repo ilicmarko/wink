@@ -5,9 +5,6 @@ namespace Wink;
 use Illuminate\Support\Facades\Route;
 use Wink\Http\Middleware\Authenticate;
 use Illuminate\Support\ServiceProvider;
-use Psr\Log\LoggerInterface;
-use FFMpeg\FFMpeg;
-use FFMpeg\FFProbe;
 
 class WinkServiceProvider extends ServiceProvider
 {
@@ -25,26 +22,6 @@ class WinkServiceProvider extends ServiceProvider
         $this->loadViewsFrom(
             __DIR__.'/../resources/views', 'wink'
         );
-
-        $this->app->singleton(FFMpeg::class, function ($app) {
-            $configuration = [
-                'ffmpeg.binaries'  => '/usr/bin/ffmpeg',
-                'ffprobe.binaries' => '/usr/bin/ffprobe',
-            ];
-            $logger = $app->make(LoggerInterface::class);
-
-            return FFMpeg::create($configuration, $logger);
-        });
-
-        $this->app->singleton(FFProbe::class, function ($app) {
-            $configuration = [
-                'ffmpeg.binaries'  => '/usr/bin/ffmpeg',
-                'ffprobe.binaries' => '/usr/bin/ffprobe',
-            ];
-            $logger = $app->make(LoggerInterface::class);
-
-            return FFProbe::create($configuration, $logger);
-        });
     }
 
     /**
