@@ -3,7 +3,7 @@
 namespace Wink\Http\Controllers;
 
 use Illuminate\Support\Facades\Storage;
-use Pbmedia\LaravelFFMpeg\FFMpeg;
+use Pbmedia\LaravelFFMpeg\FFMpegFacade as FFMpeg;
 
 
 class VideoUploadsController
@@ -22,16 +22,17 @@ class VideoUploadsController
                 'visibility' => 'public',
             ]
         );
-        $thumbnail = FFMpeg::fromDisk(config('wink.storage_disk'))
+        $thumbnailPath = config('wink.video_storage_path') . '/' . $video->hashName() . '_thumb.jpg';
+        FFMpeg::fromDisk(config('wink.storage_disk'))
             ->open($videoPath)
             ->getFrameFromSeconds(1)
             ->export()
-            ->toDisk(config('wink.video_storage_path'))
-            ->save($video->hashName() . '_thumb.jpg');
+            ->toDisk(config('wink.storage_disk'))
+            ->save($thumbnailPath);
 
         return response()->json([
             'url' => Storage::disk(config('wink.storage_disk'))->url($videoPath),
-            'thumbnail' => Storage::disk(config('wink.storage_disk'))->url($thumbnail->getFile()),
+            'thumbnail' => Storage::disk(config('wink.storage_disk'))->url($thumbnailPath),
             'mime' => $video->getMimeType(),
         ]);
     }
