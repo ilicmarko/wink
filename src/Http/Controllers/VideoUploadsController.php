@@ -31,8 +31,8 @@ class VideoUploadsController
             ->save($thumbnailPath);
 
         return response()->json([
-            'url' => Storage::disk(config('wink.storage_disk'))->url($videoPath),
-            'thumbnail' => Storage::disk(config('wink.storage_disk'))->url($thumbnailPath),
+            'url' => url(Storage::disk(config('wink.storage_disk'))->url($videoPath)),
+            'thumbnail' => url(Storage::disk(config('wink.storage_disk'))->url($thumbnailPath)),
             'mime' => $video->getMimeType(),
         ]);
     }
