@@ -20,7 +20,7 @@ class ImageUploadsController
         );
 
         return response()->json([
-            'url' => url(Storage::disk(config('wink.storage_disk'))->url($path)),
+            'url' => asset(Storage::disk(config('wink.storage_disk'))->url($path)),
         ]);
     }
 }
