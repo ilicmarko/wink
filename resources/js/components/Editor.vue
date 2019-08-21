@@ -103,14 +103,6 @@
 
                         this.openImageUploader(values);
                     }
-
-                    if (blot instanceof VideoBlot) {
-                        var values = blot.value(blot.domNode)['video'];
-
-                        values.existingBlot = blot;
-
-                        this.openVideoUploader(values);
-                    }
                 });
             },
 

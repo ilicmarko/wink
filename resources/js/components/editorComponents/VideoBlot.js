@@ -12,6 +12,8 @@ class VideoBlot extends BlockEmbed {
         let source = document.createElement('source');
         video.setAttribute('controls', '');
         video.setAttribute('poster', value.thumbnail);
+        video.style.display = 'block';
+        video.style.width = '100%';
         source.setAttribute('src', value.url);
         source.setAttribute('type', value.mime);
         video.appendChild(source);
