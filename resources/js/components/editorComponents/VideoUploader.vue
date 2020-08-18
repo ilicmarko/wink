@@ -6,6 +6,8 @@
             return {
                 existingBlot: null,
                 videoUrl: null,
+                thumbnail: '',
+                mime: '',
                 videoPickerKey: '',
                 uploadProgress: 0,
                 uploading: false,
@@ -44,8 +46,10 @@
             /**
              * Update the selected video.
              */
-            updateVideo({url}) {
+            updateVideo({url, thumbnail, mime}) {
                 this.videoUrl = url;
+                this.thumbnail = thumbnail;
+                this.mime = mime;
 
                 this.uploading = false;
             },
@@ -61,6 +65,8 @@
 
                 this.$emit('updated', {
                     url: this.videoUrl,
+                    thumbnail: this.thumbnail,
+                    mime: this.mime,
                     existingBlot: this.existingBlot,
                 });
 
@@ -85,8 +91,8 @@
         <preloader v-if="uploading"></preloader>
 
         <div v-if="videoUrl && !uploading">
-            <video class="max-w-full" controls>
-                <source :src="videoUrl"/>
+            <video class="max-w-full" controls :poster="thumbnail">
+                <source :src="videoUrl" :type="mime"/>
             </video>
         </div>
 
@@ -100,7 +106,3 @@
         <button class="btn-sm btn-light mt-10" @click="close">Cancel</button>
     </modal>
 </template>
-
-<style>
-
-</style>

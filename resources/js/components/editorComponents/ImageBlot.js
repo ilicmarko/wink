@@ -12,6 +12,8 @@ class ImageBlot extends BlockEmbed {
         let img = document.createElement('img');
         img.setAttribute('alt', value.caption);
         img.setAttribute('src', value.url);
+        img.style.display = 'block';
+        img.style.width = '100%';
         node.appendChild(img);
 
         if (value.caption) {

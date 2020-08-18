@@ -1,7 +1,11 @@
 {
     "name": "writingink/wink",
     "description": "Wink Publishing Framework.",
-    "keywords": ["framework", "laravel", "blog"],
+    "keywords": [
+        "framework",
+        "laravel",
+        "blog"
+    ],
     "license": "MIT",
     "authors": [
         {
@@ -11,7 +15,8 @@
     ],
     "require": {
         "php": "^7.1",
-        "laravel/framework": "~5.7|~6.0|~7.0"
+        "laravel/framework": "~5.7|~6.0|~7.0",
+        "pbmedia/laravel-ffmpeg": "^4.0"
     },
     "require-dev": {
         "nunomaduro/larastan": "^0.3.8"

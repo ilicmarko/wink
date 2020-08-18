@@ -103,14 +103,6 @@
 
                         this.openImageUploader(values);
                     }
-
-                    if (blot instanceof VideoBlot) {
-                        var values = blot.value(blot.domNode)['video'];
-
-                        values.existingBlot = blot;
-
-                        this.openVideoUploader(values);
-                    }
                 });
             },
 
@@ -194,9 +186,11 @@
                 this.editor.setSelection(range.index + 1, Quill.sources.SILENT);
             },
 
-            applyVideo({url, existingBlot}){
+            applyVideo({url, thumbnail, mime, existingBlot}){
                 let values = {
                     url: url,
+                    thumbnail,
+                    mime,
                 };
 
                 if (existingBlot) {
